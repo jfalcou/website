@@ -11,12 +11,50 @@
   (insert ../crumbs.html here)
 
 # SPY
+Detection and versioning of operating systems, compilers, architecture and other element are
+traditionally done using preprocessor macros. Library like [Boost.Predef](https://www.boost.org/doc/libs/1_74_0/libs/predef/doc/index.html)
+provides a sanitized interface on top of those but still live in a world where the preprocessor is king.
 
-## Goal and History
+[**SPY**](https://jfalcou.github.io/spy/) is a C++17 (and onward) library that gathers similar
+informations and provides a constexpr compatible interface to access those information, thus making their exploitation within constexpr
+context possible.
 
+Here is a small example of how to use [**SPY**](https://jfalcou.github.io/spy/) to detect current OS and compiler:
+
+<script type="preformatted">
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ c++
+#include <iostream>
+#include <spy/spy.hpp>
+
+int main()
+{
+  if constexpr( spy::operating_system == spy::windows_ )
+  {
+    std::cout << "This code is Windows only.\n";
+  }
+
+  if constexpr( spy::compiler>= 7'2_gcc )
+  {
+    std::cout << "This code has been compiled with g++ 7.2 or superior.\n";
+  }
+
+  return 0;
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</script>
 ## Download
 
+[**SPY**](https://jfalcou.github.io/spy/) is released as ready to use [package on Github](https://github.com/jfalcou/spy/releases).
+
+[**SPY**](https://jfalcou.github.io/spy/) is also available via [Conan](https://conan.io/center/spy/0.0.4/?user=_&channel=_).
+
 ## Bibliography
+
+Our Lightning Talk at CppCon 2019:
+
+![I SPY With My Little Eye](https://www.youtube.com/watch?v=t406o2EhG-A)
+
+Slides are [available on Google Slides](https://docs.google.com/presentation/d/1nSBhU4pr5EWznni0MYsyDkMCr3O3q2XS-KQdz2_BRRI/edit#slide=id.g634a7b8019_0_0)
 
 ----------------------------------------------------------------------------------------------------
 <!-- Shortcuts -->

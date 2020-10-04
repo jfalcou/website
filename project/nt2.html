@@ -14,9 +14,36 @@
 
 ## Goal and History
 
+The Numerical Template Toolbox (NT2) is an Open Source C++ library aimed at simplifying the
+development, debugging and optimization of high-performance computing applications by providing
+a Matlab like syntax that eases the transition between prototype and actual application.
+
+NT2 development has been the work of multiple of my Ph. D students:
+
+  - Pierre Estérie, who kickstarted the new version based on architecture/language split
+  - Antoine Tran Tan, who worked on the multi-core variant and HPX integration
+  - Ian Masliah, who dealt with GPGPU support.
+
+We ended up with something usable but:
+  - some performance issues subsisted and required massive rework
+  - adding architecture was becoming complex
+
+The project is now currently halted, **but a new version is currently being prepared** as a less
+monolithic software library.
+
 ## Download
 
+An archive version, up-to-date till the GPGPU Magma wrappings, is [**available here**](https://github.com/jtlap/nt2).
+It probably needs some polishing to be able to compile with recent compiler.
+
 ## Bibliography
+[**Automatic task-based code generation for high performance domain specific embedded language**, *A. Tran Tan, J Falcou, D Etiemble, H Kaiser*, International Journal of Parallel Programming 44 (3), 449-465](paper/task.pdf)
+
+[**Metaprogramming dense linear algebra solvers applications to multi and many-core architectures**, *I Masliah, M Baboulin, J Falcou*, 2015 IEEE Trustcom/BigDataSE/ISPA 3, 69-76](paper/linalg.pdf)
+
+[**The numerical template toolbox: A modern c++ design for scientific computing**, *P Esterie*, *J Falcou*, *M Gaunard*, *JT Lapresté*, *L Lacassagne*, Journal of Parallel and Distributed Computing 74 (12), 3240-3253](paper/nt2.pdf)
+
+[**Meta-programming applied to automatic SMP parallelization of linear algebra code**, *J Falcou, J Sérot, L Pech, JT Lapresté*, European Conference on Parallel Processing, 729-738](paper/smp.pdf)
 
 ----------------------------------------------------------------------------------------------------
 <!-- Shortcuts -->

@@ -12,11 +12,36 @@
 
 # EVE
 
-## Goal and History
+EVE is a re-implementation of the old EVE SIMD library by Falcou et al. which for a while
+was named Boost.SIMD. It's a C++20 and onward implementation of a type based wrapper around
+SIMD extensions sets for most current architectures. It aims at showing how C++20 can be used
+to design and implement efficient, low level, high abstraction library suited for high performances.
+
+It's a research project first and an open source library second. We reserve the right to change API
+and baseline compiler required until the first official 0.1 release. However, we'll try to minimize
+disruption. Semantic versioning will ensure API retro-compatibility if anything huge needs to change.
+
+EVE is considered in advanced beta: it's usable, has an almost complete feature sets for a sensible
+amount of instructions sets but it's possible some values or performances issues may still remain.
+Don't hesitate to report any funky code-gen or bad optimizations so we can deliver the best performance around.
+
+[The still-in-progress documentation is here.](https://jfalcou.github.io/eve/index.html)
 
 ## Download
 
+**EVE** is hosted as [a public project on GitHub](https://github.com/jfalcou/eve) from where you
+can clone or download its current form.
+
 ## Bibliography
+
+If you want to refer to EVE, you can currently use those papers (by order of preference in citation).
+A new, more up-to-date EVE specific journal paper is in the work atm.
+
+**Modern Generative Programming for Optimizing Small Matrix-Vector Multiplication**, *Jules Penuchot, Joel Falcou, Amal Khabou*, HPCS 2018
+
+[**Boost.SIMD: generic programming for portable simdization**], *Pierre Estérie, Joel Falcou, Mathias Gaunard, Jean-Thierry Lapresté*, PACT 2012](../paper/bsimd.pdf)
+
+[**EVE, an object oriented SIMD library**, *Joel Falcou, Jocelyn Serot* in Scalable Computing: Practice and Experience 6 (4)](../paper/old_eve.pdf)
 
 ----------------------------------------------------------------------------------------------------
 <!-- Shortcuts -->

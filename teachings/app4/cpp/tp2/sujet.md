@@ -1,0 +1,30 @@
+# APP4 - C++ - TP 2 - 2H
+
+## Sujet zero-containers (1/2)
+
+Télécharger l'énoncé de (zero-containers.zip). Le sujet est dans le code du TP, fichier `include/zero-containers.hpp`.
+
+### En utilisant cmake
+
+Pré-requis : il vous faut avoir une installation fonctionnelle de cmake.
+
+Pour compiler via cmake, dans le répertoire de votre énoncé (pas le `/include`) :
+```bash
+cmake .
+make
+./zero-containers
+```
+
+Il n'y a besoin de faire le `cmake .` qu'une seule fois. Pour build à nouveau le projet, il suffit de faire `make`, et toujours pour exécuter `./zero-containers`. Ou, pour compiler et exécuter, en une ligne : `make && ./zero-containers`.
+
+### Sans utiliser cmake
+
+Dans le fichier `main.cpp`, il faut remplacer le `#include <zero-containers.hpp>` par `#include "include/zero-containers.hpp"` puis effectuer la commande suivante : `g++ -o zero-containers main.cpp`. L'exécution du programme est la même que précédemment : `./zero-containers`. Soit, si on veut tout faire en une ligne : `g++ -o zero-containers main.cpp && ./zero-containers`.
+
+## Sujet raii_file (2/2)
+
+Télécharger l'énoncé (raii-file.zip). Le sujet est dans le code du TP, fichier `raii_file.hpp`, comme tout à l'heure, le fichier abritant la fonction main ne nous sert qu'à tester le code du fichier `.hpp`.
+
+Et comme précédemment :
+- Il vous est possible de compiler avec le cmake : `cmake .` suivi de `make` et `./raii_file_test`
+- Ou de compiler avec g++ (cette fois, rien à modifier dans le fichier `.cpp`) : `g++ -o zero-raii_file_test raii_file.cpp && ./raii_file_test`.

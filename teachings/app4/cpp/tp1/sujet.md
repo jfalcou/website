@@ -1,0 +1,73 @@
+# APP4 - C++ - TP 1 - 2H
+
+### Question 1
+
+Écrire une fonction libre (ie pas une fonction membre d'une classe) nommée `trace` qui prend en paramètre une base_matrix (par référence const). Et devra calculer la trace de la matrice, c'est à dire la somme de ses éléments diagonaux. Signature attendue : `double trace(base_matrix const& base_matrix)`. Vérifier que ça fonctionne avec les deux types de matrix : `dense_matrix` et `diagonal_matrix`.
+
+
+### Question 2
+
+Exemple d'utilisation de std::chrono :
+
+```c++
+#include<chrono>
+
+...
+
+auto start = std::chrono::system_clock::now();
+/* Code donc le temps est à mesurer (en secondes) */
+auto stop  = std::chrono::system_clock::now();
+std::chrono::duration<double> duration = stop - start;
+auto elapsed_time = duration.count(); // temps en secondes, nombre décimal
+```
+
+En utilisant `std::chrono`, mesurer le temps pris par de nombreux appels à la fonction trace, pour chaque type de matrice. Faire un nombre d'appels suffisant pour que le temps soit d'environ une seconde. Essayer plusieurs tailles de matrices et noter les résultats obtenus : taille `10*10`, `100*100`, `500*500`. On ne cherche pas à comparer dense à diagonal, juste à avoir un point de référence entre dense et diagonal.
+
+Pour créer les matrices, faire quelque chose du genre `diagonal_matrix* dm = new diagonal_matrix(n);` La suppression de l'objet se fait en faisant `delete dm;`
+
+
+### Question 3
+
+Faire un 2ème bench avec un pointeur `base_matrix*`. Attendre une entrée clavier, si on tape "d" c'est dense, sinan c'est diagonal. Pour l'instant on fait des `new` et `delete`, on fera `unique_ptr` la semaine prochaine. Le code pourrait ressembler à quelque chose du genre :
+
+```c++
+char c;
+std::cin >> c;
+
+base_matrix* p1;
+base_matrix* p2;
+
+if(c == 'f')
+{
+  p1 = new dense_matrix(200);
+  p2 = new diagonal_matrix(200);
+}
+else
+{
+  p1 = new diagonal_matrix(200);
+  p2 = new dense_matrix(200);
+}
+
+// appeler trace sur p1 et p2, afficher les temps pris, respectivement.
+```
+
+Même nombre de répétition que pour le premier bench. Bien comprendre ce qu'on mesure et d'où vient la différence.
+
+
+### Question 4
+
+Dupliquer le fichier source (pour garder les deux). Modifier le code pour que get et set ne soient plus des membres virtuels de `base_matrix` et seulement des fonctions membres de `diagonal_matrix` et `dense_matrix` (donc sans mot clé `virtual`). On veut désormais que la fonction trace soit virtuelle elle-même, membre de base_matrix et correctement réimplémentée par ses deux classes filles. Donc on veut que get et set ne soient plus dans la classe de base mais dans les sous-classes filles uniquement.
+
+
+### Question 5 - bonus
+
+5.1) Comment faire pour écrire une fonction virtuelle add dans la classe de base (base_matrix), qui fait la somme des deux matrices ? La fonction add doit être publique. On veut pouvoir faire :
+
+```c++
+base_matrix* a;
+base_matrix* b;
+
+base_matrix* sum = a.add(b);
+```
+
+5.2) On veut que le type retourné par add soit du bon type : diagonal_matrix* si on a deux matrices diagonales, et dense_matrix* si on a au moins une matrice dense dans l'addition.

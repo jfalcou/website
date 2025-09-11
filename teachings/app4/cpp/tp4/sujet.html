@@ -1,18 +1,30 @@
+<!--
+  Copyright 2020 Joel FALCOU
+
+  Licensed under the MIT License <http://opensource.org/licenses/MIT>.
+  SPDX-License-Identifier: MIT
+ -->
+<meta charset="utf-8" lang="en"><style class="fallback">body{visibility:hidden;}</style>
+                       **Joel Falcou, Ph. D**
+
+
+  (insert ../../../../crumbs.html here)
+
 # APP4 - C++ - TP 4 - 2H
 
 Téléchargez le projet (number-variant.zip).
 
 Comme pour les exercices précédents, la compilation s'effectue avec `cmake` en exécutant la commande `cmake .` dans le répertoire principal (contenant le fichier `CMakeLists.txt`). Comme précédemment,  une seule exécution de `cmake` est nécessaire, et il vous suffit ensuite d'appeler `make` dans le dossier. Et pareil, exécuter le binaire une fois compilé il faut exécuter `./number-variant`.
 
-On a un programme dont la structure s'etale sur plusieurs fichiers.
+On a un programme dont la structure s’étale sur plusieurs fichiers.
 
 Le fichier `types.hpp` contient les types de base, le header `printing.hpp`
-contient les declarations des `operator<<` pour afficher les objets definis dans
+contient les declarations des `operator<<` pour afficher les objets définis dans
 une sortie standard, `arithmetic.hpp` qui contient les declarations des
-operateurs arithmetiques, et `number_factory.hpp` qui contient les declarations
-relatives a la construction de ces objets a partir de chaines de caracteres.
+opérateurs arithmétiques, et `number_factory.hpp` qui contient les declarations
+relatives a la construction de ces objets a partir de chaines de caractères.
 
-Les definitions (CaD les implementations) sont definies dans les fichiers
+Les definitions (CaD les implementations) sont définies dans les fichiers
 sources (ie. `.cpp`) correspondants. Les headers (ie. les `.hpp`) ne contiennent
 que les *declarations* de fonction, CaD les prototypes sans les corps des
 fonctions.
@@ -23,7 +35,7 @@ https://en.cppreference.com/w/cpp/utility/variant
 **Attention:** Les lambdas que vous passez a `std::visit` doivent **toujours**
 renvoyer le meme type.
 
-1.  Dans `types.hpp`, definissez `number_t` qui permet de representer soit un
+1.  Dans `types.hpp`, définissez `number_t` qui permet de représenter soit un
     `int`, soit un `double`.
 
 2.  Implementez un `operator<<` pour pouvoir afficher un `number_t` dans un
@@ -56,4 +68,15 @@ renvoyer le meme type.
 6.  Faites des modifications a `arithmetic.cpp` et recompilez en observant quels
     fichiers sont recompiles. Quel est l'impact d'une modif de ce fichier ?
     Meme question pour `types.hpp`.
+
+----------------------------------------------------------------------------------------------------
+<!-- Shortcuts -->
+
+<!-- Footnotes -->
+
+<!-- End of Document -->
+<style class="fallback">body{visibility:hidden}</style><script>markdeepOptions={tocStyle:'none'};</script>
+<link rel="stylesheet" href="../../../../style.css">
+<!-- Markdeep: -->
+<script src="https://casual-effects.com/markdeep/latest/markdeep.min.js?" charset="utf-8"></script>
 

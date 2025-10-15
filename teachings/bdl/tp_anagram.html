@@ -1,0 +1,106 @@
+<!--
+  Copyright 2020 Joel FALCOU
+
+  Licensed under the MIT License <http://opensource.org/licenses/MIT>.
+  SPDX-License-Identifier: MIT
+ -->
+<meta charset="utf-8" lang="en"><style class="fallback">body{visibility:hidden;}</style>
+                       **Joel Falcou, Ph. D**
+
+
+  (insert ../../crumbs.html here)
+
+
+# Anagrammes
+
+*Date : 20 novembre 2023*
+
+## Modalité de rendu
+
+Le TP est à faire **SEUL**, à rendre **SEUL**.
+Vous avez le droit d'effectuer des recherches sur internet. Pour cela, privilégiez [cppreference](https://cppreference.com).
+**Tout usage d'outils ou de services d'intelligence artificielle est strictement interdit et entraînera une note de 0 point, sans possibilité de recours.**
+Le TP se compose d'un unique fichier `anagram.cpp` qui sera à envoyer à votre chargé de TP à l'adresse e-mail suivante en le renommant sous la forme `anagram_NOM.cpp` :
+
+**Email :** joel.falcou@universite-paris-saclay.fr
+
+**Attention :** Ne modifiez **pas** la signature des fonctions déjà présentes, sinon votre code ne passera pas nos tests.
+
+**Date de rendu :** Le sujet est à rendre par mail **AVANT** la fin de séance (17h45). Toutes les 5 minutes de retard coûteront **-2 points**. Pensez à vérifier que votre chargé de TP a bien reçu votre mail avant de partir.
+
+Votre mail devra avoir comme sujet `[APP3] TP Noté 1 NOM_Prénom` où `NOM` et `Prénom` sont à remplacer par votre nom et prénom.
+
+**Attention :** N'envoyez pas de fichier executables par mail. Le service de mailing de l'université le bloquera. La pénalité de point en cas de retard s'appliquera même dans ce cas.
+
+## Notation
+
+La note totale se fera sur **20 points** répartis ainsi :
+
+- **16 points** si votre code fonctionne et est de bonne qualité. Pour ce TP, il vous est demandé de tester vos propres fonctions, c'est pourquoi aucun test unitaire n'est fourni. Pensez à vérifier les cas particuliers s'il y en a. Parmi ces 16 points, **5 points** sont attribués en fonction de la qualité de votre code (indentation, correction algorithmique, commentaires, noms adéquats de variables...).
+- **3 points** pour les tests à écrire dans la fonction `main`.
+- **1 point** pour la réponse à la question de la Partie 3.
+
+## Sujet
+
+Une **anagramme** est une permutation des lettres d'un mot pour obtenir un nouveau mot. Par exemple, les mots *onirique* et *ironique* ayant les mêmes lettres avec le même nombre d'occurrences (un *n*, deux *i*, etc.), ce sont des anagrammes l'un de l'autre.
+
+## Détection d'anagramme
+
+Définissez une fonction `std::string normalize(std::string const &)` ayant la spécification suivante : la chaîne renvoyée doit être la même pour toutes les anagrammes du mot passé en argument ; elle doit être différente pour deux mots qui ne sont pas des anagrammes. Par exemple, `"eiinoqru"` est une forme normale convenable pour *onirique* et *ironique* (d'autres façons de normaliser sont possibles).
+
+**Indications :**
+- Vous pouvez utiliser `std::sort`.
+- Si la chaîne de caractère d'entrée contient des espaces, ceux-ci sont retirés par `normalize`.
+- De même, `normalize` transformera toute potentielle majuscule en minuscule.
+
+Utilisez cette fonction pour définir une fonction `bool are_anagrams(std::string const &, std::string const &)` prenant deux chaînes de caractères en argument et renvoyant `true` si ces deux chaînes sont anagrammes l'une de l'autre.
+
+Testez votre fonction sur quelques exemples dans la fonction `main` et affichez-les.
+
+## Chargement de mots
+
+Définissez une fonction `std::vector<std::string> load()` qui lit le fichier [**`words.txt`**](words.txt) et renvoie un vecteur de chaînes de caractères contenant un mot par case. Vous utiliserez préférentiellement `std::getline(std::istream &, std::string &)` pour effectuer la lecture du fichier depuis un `std::ifstream`.
+
+Testez votre fonction dans `main` en affichant la longueur du vecteur (le nombre de mots lus) ainsi que le dernier mot. *(Note : le zyzzyva est un coléoptère tropical.)*
+
+## Construction de dictionnaire
+
+L'objectif est maintenant de construire un dictionnaire permettant d'inverser la fonction `normalize`. Autrement dit, pour toute chaîne `s`, une expression ressemblant à `dict[normalize(s)]` doit permettre de retrouver entre autres la valeur `s`. Vous utiliserez pour cela le conteneur `std::multimap` qui est une table de hachage à valeurs multiples :
+
+```cpp
+using dictionary = std::multimap<std::string, std::string>;
+```
+
+**Question :** Pourquoi est-ce que `std::map` ne convient pas ? *(Répondez sous forme de commentaires à la fin du fichier `.cpp`)*
+
+Définissez une fonction `dictionary convert(std::vector<std::string> const &)` qui crée et remplit un dictionnaire à l'aide des mots passés en argument.
+
+**Note :** `std::multimap::insert` prend en argument une paire formée de la clé et de la valeur associée.
+
+## Liste des anagrammes d'un mot
+
+Définissez une fonction `std::vector<std::string> anagrams(dictionary const &, std::string const &)` qui renvoie toutes les anagrammes d'un mot (excepté lui-même) présentes dans un dictionnaire :
+
+```cpp
+std::vector<std::string> anagrams(dictionary const &, std::string const &);
+```
+
+**Note :** La méthode `equal_range` de `std::multimap` renvoie une paire d'itérateurs qui délimitent la zone contenant toutes les entrées d'un dictionnaire ayant la même clé.
+
+Testez votre fonction en affichant les anagrammes des mots suivants (ou un message d'erreur le cas échéant) :
+
+```cpp
+std::vector<std::string> test_words = { "anagram", "parrot", "abba", "insert", "silent" };
+```
+
+
+----------------------------------------------------------------------------------------------------
+<!-- Shortcuts -->
+
+<!-- Footnotes -->
+
+<!-- End of Document -->
+<style class="fallback">body{visibility:hidden}</style><script>markdeepOptions={tocStyle:'none'};</script>
+<link rel="stylesheet" href="../../style.css">
+<!-- Markdeep: -->
+<script src="https://casual-effects.com/markdeep/latest/markdeep.min.js?" charset="utf-8"></script>

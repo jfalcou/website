@@ -1,0 +1,144 @@
+<!--
+  Copyright 2020 Joel FALCOU
+
+  Licensed under the MIT License <http://opensource.org/licenses/MIT>.
+  SPDX-License-Identifier: MIT
+ -->
+<meta charset="utf-8" lang="en"><style class="fallback">body{visibility:hidden;}</style>
+                       **Joel Falcou, Ph. D**
+
+
+  (insert ../../../../crumbs.html here)
+
+# MASTER 1 - ADVANCED C++ - TP 1 - 3H
+
+## Question 1
+
+Write a **free function** (i.e., not a member function of a class) named `trace` that takes a `base_matrix` as a **const reference**. It must compute the **trace** of the matrix, i.e. the sum of its diagonal elements.
+
+Expected signature:
+
+```cpp
+double trace(base_matrix const& base_matrix);
+```
+
+Check that it works with both matrix types: `dense_matrix` and `diagonal_matrix`.
+
+## Question 2
+
+Example usage of `std::chrono`:
+
+```cpp
+#include <chrono>
+
+auto start = std::chrono::system_clock::now();
+/* Code whose time must be measured (in seconds) */
+auto stop  = std::chrono::system_clock::now();
+std::chrono::duration<double> duration = stop - start;
+auto elapsed_time = duration.count(); // time in seconds (floating number)
+```
+
+Using `std::chrono`, measure the time taken by **many calls** to the function `trace`, for each matrix type.
+
+- Use a sufficient number of calls so that the benchmark takes a few seconds (try to understand why this is necessary).
+- Try several matrix sizes and record the results:
+  - `10x10`
+  - `100x100`
+  - `500x500`
+
+We are **not trying to compare** dense vs diagonal here, just want to to get a reference point for the performance of each.
+
+To create matrices, do something like:
+
+```cpp
+diagonal_matrix* dm = new diagonal_matrix(n);
+```
+
+Deleting the object is done with:
+
+```cpp
+delete dm;
+```
+
+## Question 3
+
+Create a **second benchmark** using a `base_matrix*` pointer.
+
+- Wait for a keyboard input.
+- If the user types `"d"`, it’s dense; otherwise it’s diagonal.
+- For now, use `new` and `delete` (you’ll switch to `unique_ptr` next week).
+
+The code could look like this:
+
+```cpp
+char c;
+std::cin >> c;
+
+base_matrix* p1;
+base_matrix* p2;
+
+if(c == 'f')
+{
+  p1 = new dense_matrix(200);
+  p2 = new diagonal_matrix(200);
+}
+else
+{
+  p1 = new diagonal_matrix(200);
+  p2 = new dense_matrix(200);
+}
+
+// call trace on p1 and p2, and print the times taken, respectively.
+```
+
+Use the **same number of repetitions** as for the first benchmark.
+
+Make sure you understand what is being measured and where the difference comes from.
+
+## Question 4
+
+Duplicate the source file (to keep both versions).
+
+Modify the code so that `get` and `set` are **no longer virtual members** of `base_matrix`, and are only member functions of `diagonal_matrix` and `dense_matrix` (so **without** the `virtual` keyword).
+
+Now, the `trace` function should become **virtual itself**, as a member of `base_matrix`, and be correctly overridden by the two derived classes.
+
+In other words:
+
+- `get` and `set` are no longer in the base class.
+- They exist only in the derived classes.
+- `trace` becomes virtual in the base class and is reimplemented in each derived class.
+
+## Question 5 (bonus)
+
+### 5.1
+
+How can you write a virtual function `add` in the base class (`base_matrix`) that computes the sum of two matrices?
+
+- `add` must be `public`.
+- You want to be able to write:
+
+```cpp
+base_matrix* a;
+base_matrix* b;
+
+base_matrix* sum = a.add(b);
+```
+
+### 5.2
+
+You want the returned type of `add` to be the correct one:
+
+- `diagonal_matrix*` if both matrices are diagonal
+- `dense_matrix*` if at least one matrix is dense
+
+----------------------------------------------------------------------------------------------------
+<!-- Shortcuts -->
+
+<!-- Footnotes -->
+
+<!-- End of Document -->
+<style class="fallback">body{visibility:hidden}</style><script>markdeepOptions={tocStyle:'none'};</script>
+<link rel="stylesheet" href="../../../../style.css">
+<!-- Markdeep: -->
+<script src="https://casual-effects.com/markdeep/latest/markdeep.min.js?" charset="utf-8"></script>

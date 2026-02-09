@@ -6,18 +6,18 @@
 #include <cassert>
 
 //------------------------------------------------------------------------------------------
-// Implémentez une classe number avec les fonctions abstraites suivantes:
+// Implement a number class with the following abstract functions:
 //
-//  - une fonction print prenant un std::ostream& en paramètre et retournant std::ostream&
-//  - une fonction square ne prenant aucun paramètre et retournant un unique_ptr de number
+//  - a print function that takes a std::ostream& as a parameter and returns std::ostream&
+//  - A square function that takes no parameters and returns a unique_ptr of number
 //------------------------------------------------------------------------------------------
 class number
 {
 };
 
 //------------------------------------------------------------------------------------------
-// Complétez et corriger les classes suivantes pour que les tests de la fonction tests()
-// compilent et passent avec succès.
+// Complete and correct the following classes so that the tests in the tests() function
+// compile and pass successfully.
 //------------------------------------------------------------------------------------------
 class integer
 {
@@ -119,7 +119,7 @@ double roll(double min, double max)
 }
 
 //------------------------------------------------------------------------------------------
-// Corrigez la fonction lotsanumbers pour qu'elle compile et s'exécute sans erreur
+// Correct the lotsanumbers function so that it compiles and runs without errors.
 //------------------------------------------------------------------------------------------
 void lotsanumbers(int n)
 {

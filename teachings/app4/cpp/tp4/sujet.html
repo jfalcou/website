@@ -12,62 +12,42 @@
 
 # APP4 - C++ - TP 4 - 2H
 
-Téléchargez le projet (number-variant.zip).
+Download the project (number-variant.zip).
 
-Comme pour les exercices précédents, la compilation s'effectue avec `cmake` en exécutant la commande `cmake .` dans le répertoire principal (contenant le fichier `CMakeLists.txt`). Comme précédemment,  une seule exécution de `cmake` est nécessaire, et il vous suffit ensuite d'appeler `make` dans le dossier. Et pareil, exécuter le binaire une fois compilé il faut exécuter `./number-variant`.
+We have a program whose structure spans several files. The `types.hpp` file contains the basic types, the
+`printing.hpp` header contains the declarations of `operator<<` to display the objects defined in a standard output,
+`arithmetic.hpp` contains the declarations of arithmetic operators, and `number_factory.hpp` contains the declarations
+related to the construction of these objects from character strings.
 
-On a un programme dont la structure s’étale sur plusieurs fichiers.
+The definitions (i.e., the implementations) are defined in the corresponding source files (i.e., `.cpp`).
+The headers (i.e., the `.hpp`) only contain the function *declarations*, i.e., the prototypes without the function bodies.
 
-Le fichier `types.hpp` contient les types de base, le header `printing.hpp`
-contient les declarations des `operator<<` pour afficher les objets définis dans
-une sortie standard, `arithmetic.hpp` qui contient les declarations des
-opérateurs arithmétiques, et `number_factory.hpp` qui contient les declarations
-relatives a la construction de ces objets a partir de chaines de caractères.
-
-Les definitions (CaD les implementations) sont définies dans les fichiers
-sources (ie. `.cpp`) correspondants. Les headers (ie. les `.hpp`) ne contiennent
-que les *declarations* de fonction, CaD les prototypes sans les corps des
-fonctions.
-
-Vous aurez besoin de la doc de `std::variant`:
+You will need the documentation for `std::variant`:
 https://en.cppreference.com/w/cpp/utility/variant
 
-**Attention:** Les lambdas que vous passez a `std::visit` doivent **toujours**
-renvoyer le meme type.
+**WARNING:** The lambdas you pass to `std::visit` must **always** return the same type.
 
-1.  Dans `types.hpp`, définissez `number_t` qui permet de représenter soit un
-    `int`, soit un `double`.
+1.  In `types.hpp`, define `number_t`, which can represent either an `int` or a `double`.
 
-2.  Implementez un `operator<<` pour pouvoir afficher un `number_t` dans un
-    `std::ostream`. Pour cela vous devrez surcharger l'`operator<<` avec la
-    bonne signature, que vous trouverez dans `printing.hpp`.
+2.  Implement an `operator<<` to be able to display a `number_t` in a `std::ostream`.
+    To do this, you will need to override the `operator<<` with the correct signature,
+    which you will find in `printing.hpp`.
 
-3.  Implementez les operateurs arithmetiques entre `fraction_t` dans
-    `arithmetic.cpp`, puis faites de meme pour `number_t`.
-    Pour les operations sur des `fraction_t`, on ne demande pas que les
-    fractions soient simplifiees.
-    Pour les operations sur `number_t`, on se contente d'utiliser les operateurs
-    arithmetiques des types contenus.
+3.  Implement arithmetic operators between `fraction_t` in `arithmetic.cpp`, then do the same for `number_t`.
+    For operations on `fraction_t`, fractions do not need to be simplified. For operations on `number_t`,
+    simply use the arithmetic operators of the types contained.
 
-4.  Etendez `number_t` pour qu'il puisse egalement contenir un valeur de type
-    `fraction_t` ou de type `std::complex<double>`.
+4.  Extend `number_t` so that it can also contain a value of type `fraction_t` or type `std::complex<double>`.
+    You may need to add more operators to `fraction_t`, act accordingly.
 
-5.  Implementez la fonction `number_factory` dans `number_factory.cpp`.
-    Le premier parametre contient l'une des chaines de caracteres suivantes:
-    "real", "complex", "integer", ou "fraction", et doit construire un
-    `number_t` contenant une valeur du type defini a partir de la chaine de
-    caracteres du 2e parametre.
+5.  Implement the `number_factory` function in `number_factory.cpp`.
+    The first parameter contains one of the following strings: "real," "complex," "integer," or "fraction," and must
+    construct a `number_t` containing a value of the type defined from the string in the second parameter.
 
-    Dans le cas ou le premier parametre ne correspond a rien, renvoyez un
-    `number_t` dont la valeur est celle par defaut.
+    If the first parameter does not correspond to anything, return a `number_t` with the default value.
 
-    Utilisez `std::istringstream` pour la lecture des valeurs numeriques,
-    les tests sont la pour lever les ambiguites sur les formats des differents
-    types de valeurs.
-
-6.  Faites des modifications a `arithmetic.cpp` et recompilez en observant quels
-    fichiers sont recompiles. Quel est l'impact d'une modif de ce fichier ?
-    Meme question pour `types.hpp`.
+    Use `std::istringstream` to read numeric values; tests are there to remove ambiguities about the formats
+    of different types of values..
 
 ----------------------------------------------------------------------------------------------------
 <!-- Shortcuts -->
